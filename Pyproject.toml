@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.backends.legacy:build"
+
+[project]
+name = "pii-safe-cli"
+version = "1.0.0"
+description = "CLI tool for batch dataset PII sanitization — PII-Safe Issue #11"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "Apache-2.0"}
+
+dependencies = [
+    "click>=8.1",
+    "pyyaml>=6.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "pytest-cov>=6.0",
+]
+
+[project.scripts]
+pii-safe = "pii_safe_cli.cli:main"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
