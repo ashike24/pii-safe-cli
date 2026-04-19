@@ -1,0 +1,25 @@
+# policy.yaml — PII-Safe CLI policy configuration
+# Pass this with: pii-safe sanitize --policy policy.yaml --input ./data/
+
+# Redaction mode: redact | pseudonymize | block
+mode: pseudonymize
+
+# Entity types to detect (leave empty to scan for all built-ins)
+# Built-ins: EMAIL, SSN, PHONE, CREDIT_CARD, IP_ADDR, DATE, ZIP_CODE, URL
+entity_types:
+  - EMAIL
+  - SSN
+  - PHONE
+  - CREDIT_CARD
+
+# Audit report format: json | csv
+output_format: json
+
+# Optional: custom regex patterns for domain-specific identifiers
+extra_patterns:
+  EMPLOYEE_ID: "EMP-\\d{6}"
+  PROJECT_CODE: "PRJ-[A-Z]{3}-\\d{4}"
+
+# Optional: delegate sanitization to the PII-Safe FastAPI backend
+# Uncomment if the Docker service (Issue #7) is running:
+# api_url: http://localhost:8000
